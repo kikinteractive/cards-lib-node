@@ -29,7 +29,7 @@ This method handles all responses outlined in the 'Push Notifications Docs' and 
 var push_token = 'pushTokenFromClient';
 
 // this shows up in the status bar
-var ticker = "My awesome ticker text";
+var ticker = 'My awesome ticker text';
 
 // this can be an empty object
 var payload = {
@@ -56,13 +56,13 @@ This method handles all responses outlined in the 'Authentication Docs' and will
 
 ```js
 // the user we want to verify
-var username = kikteam;
+var username = 'kikteam';
 
 // the hostname of your app
-var host = "http://meme.kik.com";
+var host = 'http://meme.kik.com';
 
 // the signed data from kik.cards.sign() for more info - http://cards.kik.com/build/#server-auth
-var signedData = "mySignedData";
+var signedData = 'mySignedData';
 
 cards.kik.verify(username, host, signedData, function(err, unsignedData) {
     if(err) {
