@@ -25,7 +25,7 @@
                             }
                             else {
                                 // successfully signed
-                                API.verifyUser(username, host, signedData, function(err) {
+                                API.verifyUser(username, host, signedData, function(err, data) {
                                     if(err) {
                                         App.dialog({
                                             title : 'Oh Snap!',

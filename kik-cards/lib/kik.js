@@ -24,7 +24,7 @@ function verifyRequest(url, body, callback, retry) {
     retry = retry || 0;
     utils.httpRequest(url, body, function(status, data) {
         if(status == 200) {
-            callback();
+            callback(null, data);
         }
         else if( !status ) {
             // exponential back off on retries
