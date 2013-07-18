@@ -5,9 +5,8 @@ For any kik web app, some features will require having a backend. This NodeJS pa
 
 Links
 -----
-[Push Notifications Docs](http://cards.kik.com/docs/push/)
-
-[Authentication Docs](http://cards.kik.com/docs/graph/#auth)
+-[Push Notifications Docs](http://cards.kik.com/docs/push/)
+-[Authentication Docs](http://cards.kik.com/docs/graph/#auth)
 
 Usage
 -----
@@ -38,11 +37,11 @@ var payload = {
 }
 
 cards.push.send(push_token, ticker, payload, function(err, shouldDeleteToken) {
-    if(err) {
-        // something went wrong :-( 'err' will tell you why!
-    }
-    else if(shouldDeleteToken) {
+    if(shouldDeleteToken) {
         // the push token has been rejected. You should delete any references to it and not attempt to resend.
+    }
+    else if(err) {
+        // something went wrong :-( 'err' will tell you why!
     }
     else {
         // the push token was sent!
