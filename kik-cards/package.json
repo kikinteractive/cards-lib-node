@@ -1,8 +1,15 @@
 {
   "name": "kik-cards",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "a NodeJS helper library for kik cards.",
   "main": "kik-cards.js",
   "author": "Jack Read",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kikinteractive/cards-lib-node.git"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
 }
