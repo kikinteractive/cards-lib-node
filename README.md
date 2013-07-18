@@ -13,7 +13,7 @@ Usage
 
 ### Getting started
 
-Include the kik-cards package on your backend script.
+Include the kik-cards module in your package.json, do an 'npm-install' and then require 'kik-cards' on your backend script.
 
 ```js
 var cards = require('kik-cards');
