@@ -1,0 +1,8 @@
+{
+  "name": "kik-cards",
+  "version": "0.0.0",
+  "description": "a NodeJS helper library for kik cards.",
+  "main": "kik-cards.js",
+  "author": "Jack Read",
+  "license": "MIT"
+}
