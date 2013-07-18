@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+    <head>
+        <title>Push App</title>
+        <meta name="description" content="My amazing card!">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="kik-prefer" content="true">
+        <link rel="kik-icon" href="/img/icon.png">
+
+        <!-- zerver:css/main.min.css -->
+        <link rel="stylesheet" href="/css/default.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        <!-- /zerver -->
+    </head>
+
+    <div class="app-page" data-page="notloggedin">
+        <div class="app-content">
+            <div id="logo">P</div>
+            <div class="app-section">
+                <div class="app-button" id="signin">Sign In</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-page" data-page="loggedin">
+        <div class="app-topbar">
+            <div class="app-title">Welcome, <span class="username">Friend</span></div>
+        </div>
+        <div class="app-content">
+            <div class="app-section">
+                <input class="app-input" placeholder="Enter message...">
+                <div id="send-push" class="app-button">Send push notification</div>
+            </div>
+            <div class="app-section">
+                <div id="signout" class="app-button">Logout</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- zerver:js/main.min.js -->
+    <script src="/zerver/API.js"></script>
+    <script src="/js/zepto.js"></script>
+    <script src="/js/cards.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- /zerver -->
+</html>
