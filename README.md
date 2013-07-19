@@ -13,7 +13,13 @@ Usage
 
 ### Getting started
 
-Include the kik-cards module in your package.json, do an 'npm-install' and then require 'kik-cards' on your backend script.
+```sh
+npm install kik-cards
+```
+
+Alternatively, you can include the library in your `package.json`.
+
+Now you can use the library in your code:
 
 ```js
 var cards = require('kik-cards');
@@ -22,11 +28,11 @@ var cards = require('kik-cards');
 ### Sending push notifications
 
 cards.push.send() accepts 3 arguments and a callback function.
-This method handles all responses outlined in the 'Push Notifications Docs' and will automatically retry requests where applicable.
+This method handles all responses outlined in the [Push Notifications Docs](http://cards.kik.com/docs/push/) and will automatically retry requests where applicable.
 
 ```js
 // this is the users, unique push token. http://cards.kik.com/docs/push/#token
-var push_token = 'pushTokenFromClient';
+var pushToken = 'pushTokenFromClient';
 
 // this shows up in the status bar
 var ticker = 'My awesome ticker text';
@@ -36,11 +42,12 @@ var payload = {
     'key' : 'value'
 }
 
-cards.push.send(push_token, ticker, payload, function(err, shouldDeleteToken) {
+cards.push.send(pushToken, ticker, payload, function(err, shouldDeleteToken) {
     if(shouldDeleteToken) {
         // the push token has been rejected. You should delete any references to it and not attempt to resend.
     }
-    else if(err) {
+    
+    if(err) {
         // something went wrong :-( 'err' will tell you why!
     }
     else {
@@ -52,7 +59,7 @@ cards.push.send(push_token, ticker, payload, function(err, shouldDeleteToken) {
 ### Authentication
 
 cards.kik.verify accepts 3 arguments and a callback function.
-This method handles all responses outlined in the 'Authentication Docs' and will automatically retry requests where applicable.
+This method handles all responses outlined in the [Authentication Docs](http://cards.kik.com/docs/graph/#auth) and will automatically retry requests where applicable.
 
 ```js
 // the user we want to verify
