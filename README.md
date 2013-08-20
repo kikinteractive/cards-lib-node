@@ -1,4 +1,4 @@
-Kik-Cards - NodeJS Library
+Kik Cards - NodeJS Library
 ==========================
 
 For any kik web app, some features will require having a backend. This NodeJS package makes sending push notifications and verifying user data easy.
