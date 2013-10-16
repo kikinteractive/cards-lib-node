@@ -42,15 +42,14 @@ var payload = {
     'key' : 'value'
 }
 
-cards.push.send(pushToken, ticker, payload, function(err, shouldDeleteToken) {
+cards.push.send(pushToken, ticker, payload, function (err, shouldDeleteToken) {
     if(shouldDeleteToken) {
         // the push token has been rejected. You should delete any references to it and not attempt to resend.
     }
-    
+
     if(err) {
         // something went wrong :-( 'err' will tell you why!
-    }
-    else {
+    } else {
         // the push token was sent!
     }
 });
@@ -59,7 +58,7 @@ cards.push.send(pushToken, ticker, payload, function(err, shouldDeleteToken) {
 ### Authentication
 
 cards.kik.verify accepts 3 arguments and a callback function.
-This method handles all responses outlined in the [Authentication Docs](http://cards.kik.com/docs/graph/#auth) and will automatically retry requests where applicable.
+This method handles all responses outlined in the [Authentication Docs](http://cards.kik.com/docs/graph/#server-auth) and will automatically retry requests where applicable.
 
 ```js
 // the user we want to verify
@@ -68,10 +67,10 @@ var username = 'kikteam';
 // the hostname of your app
 var host = 'http://meme.kik.com';
 
-// the signed data from kik.cards.sign() for more info - http://cards.kik.com/build/#server-auth
+// the signed data
 var signedData = 'mySignedData';
 
-cards.kik.verify(username, host, signedData, function(err, unsignedData) {
+cards.kik.verify(username, host, signedData, function (err, unsignedData) {
     if(err) {
         // not verified
     }
@@ -81,3 +80,26 @@ cards.kik.verify(username, host, signedData, function(err, unsignedData) {
 });
 ```
 
+### Anonymous authentication
+
+cards.kik.anonymousVerify accepts 3 arguments and a callback function.
+This method handles all responses outlined in the [Anonymous Authentication Docs](http://cards.kik.com/docs/graph/#auth) and will automatically retry requests where applicable.
+
+```js
+// the anonymous user we want to verify
+var anonToken = 'getThisFromTheClient';
+
+// the hostname of your app
+var host = 'http://meme.kik.com';
+
+// the signed data
+var signedData = 'mySignedData';
+
+cards.kik.anonymousVerify(anonToken, host, signedData, function (err, unsignedData) {
+    if (err) {
+        // not verified
+    } else {
+        // do something with unsignedData
+    }
+});
+```
