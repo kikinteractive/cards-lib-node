@@ -21,7 +21,7 @@ Alternatively, you can include the library in your `package.json`:
 ```json
 {
   "dependencies" : {
-    "kik-cards" : "0.1.2"
+    "kik-lib" : "1.0.0"
   }
 }
 ```
