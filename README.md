@@ -1,12 +1,12 @@
-Kik Cards - NodeJS Library
+Kik API - NodeJS Library
 ==========================
 
-For any kik web app, some features will require having a backend. This NodeJS package makes sending push notifications and verifying user data easy.
+For any webapp, some features will require having a backend. This NodeJS package makes sending push notifications and verifying user data easy for those developing against the Kik browser API.
 
 Links
 -----
-* [Push Notifications Docs](http://cards.kik.com/docs/push/)
-* [Authentication Docs](http://cards.kik.com/docs/graph/#auth)
+* [Push Notifications Docs](http://dev.kik.com/docs/#push)
+* [Authentication Docs](http://dev.kik.com/docs/#identity-auth)
 
 Usage
 -----
@@ -14,92 +14,98 @@ Usage
 ### Getting started
 
 ```sh
-npm install kik-cards
+npm install kik-lib
 ```
 
-Alternatively, you can include the library in your `package.json`.
+Alternatively, you can include the library in your `package.json`:
+```json
+{
+  "dependencies" : {
+    "kik-cards" : "0.1.2"
+  }
+}
+```
 
 Now you can use the library in your code:
 
 ```js
-var cards = require('kik-cards');
+var kik = require('kik-lib');
 ```
 
 ### Sending push notifications
 
-cards.push.send() accepts 3 arguments and a callback function.
-This method handles all responses outlined in the [Push Notifications Docs](http://cards.kik.com/docs/push/) and will automatically retry requests where applicable.
+`kik.push.send()` accepts 3 arguments and a callback function.
+This method handles all responses outlined in the [Push Notifications Docs](http://dev.kik.com/docs/#push) and will automatically retry requests where applicable.
 
 ```js
-// this is the users, unique push token. http://cards.kik.com/docs/push/#token
+// this is the users unique push token. http://dev.kik.com/docs/#push-token
 var pushToken = 'pushTokenFromClient';
 
 // this shows up in the status bar
 var ticker = 'My awesome ticker text';
 
-// this can be an empty object
+// data to be passed to your app (can be empty)
 var payload = {
-    'key' : 'value'
+  'key' : 'value'
 }
 
-cards.push.send(pushToken, ticker, payload, function (err, shouldDeleteToken) {
-    if(shouldDeleteToken) {
-        // the push token has been rejected. You should delete any references to it and not attempt to resend.
-    }
+kik.push.send(pushToken, ticker, payload, function (err, shouldDeleteToken) {
+  if (shouldDeleteToken) {
+    // the push token has been rejected. You should delete any references to it and not attempt to use it again.
+  }
 
-    if(err) {
-        // something went wrong :-( 'err' will tell you why!
-    } else {
-        // the push token was sent!
-    }
+  if (err) {
+      // something went wrong :-( 'err' will tell you why!
+  } else {
+      // the push was sent!
+  }
 });
 ```
 
 ### Authentication
 
-cards.kik.verify accepts 3 arguments and a callback function.
-This method handles all responses outlined in the [Authentication Docs](http://cards.kik.com/docs/graph/#server-auth) and will automatically retry requests where applicable.
+`kik.verify()` accepts 3 arguments and a callback function.
+This method handles all responses outlined in the [Authentication Docs](http://dev.kik.com/docs/#identity-auth) and will automatically retry requests where applicable.
 
 ```js
 // the user we want to verify
 var username = 'kikteam';
 
 // the hostname of your app
-var host = 'http://meme.kik.com';
+var host = 'myapp.com';
 
-// the signed data
+// the signed data from the client. http://dev.kik.com/docs/#identity-auth
 var signedData = 'mySignedData';
 
-cards.kik.verify(username, host, signedData, function (err, unsignedData) {
-    if(err) {
-        // not verified
-    }
-    else {
-        // do something with unsignedData
-    }
+kik.verify(username, host, signedData, function (err, unsignedData) {
+  if (err) {
+    // not verified
+  } else {
+    // do something with unsignedData
+  }
 });
 ```
 
 ### Anonymous authentication
 
-cards.kik.anonymousVerify accepts 3 arguments and a callback function.
-This method handles all responses outlined in the [Anonymous Authentication Docs](http://cards.kik.com/docs/graph/#auth) and will automatically retry requests where applicable.
+`kik.anonymousVerify()` accepts 3 arguments and a callback function.
+This method handles all responses outlined in the [Anonymous Authentication Docs](http://dev.kik.com/docs/#identity-anon) and will automatically retry requests where applicable.
 
 ```js
 // the anonymous user we want to verify
 var anonToken = 'getThisFromTheClient';
 
 // the hostname of your app
-var host = 'http://meme.kik.com';
+var host = 'myapp.com';
 
 // the signed data
 var signedData = 'mySignedData';
 
-cards.kik.anonymousVerify(anonToken, host, signedData, function (err, unsignedData) {
-    if (err) {
-        // not verified
-    } else {
-        // do something with unsignedData
-    }
+kik.anonymousVerify(anonToken, host, signedData, function (err, unsignedData) {
+  if (err) {
+    // not verified
+  } else {
+    // do something with unsignedData
+  }
 });
 ```

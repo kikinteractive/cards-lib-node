@@ -1,0 +1,15 @@
+{
+  "name": "kik-lib",
+  "version": "1.0.0",
+  "description": "Helper library for Kik API development",
+  "main": "kik.js",
+  "author": "Kik Interactive Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kikinteractive/kik-lib-node.git"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
+}
